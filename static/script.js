@@ -79,11 +79,15 @@ const submitForm = () => {
 
     disableControls()
 
-    let text = document.getElementById('text').value
+    let text = document.getElementById('text').value.trim()
     const textLength = new TextEncoder().encode(text).length
     console.log(textLength)
-
-    if (textLength === 0) text = 'The fungus among us.' 
+    
+    if (text.length === 0) {
+        setError("Please enter some text.")
+        enableControls()
+        return
+    }
     const voice = document.getElementById('voice').value
 
     if(voice == "none") {
